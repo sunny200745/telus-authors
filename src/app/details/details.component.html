@@ -1,0 +1,107 @@
+<div class="row">
+  <div class="col-9">
+
+    <h3>Details Page</h3>
+  </div>
+  <div class="col">
+
+    <button class="btn btn-lg btn-outline-primary" (click)="backToSearch()">
+      Back to Search
+    </button>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-5 overview" *ngIf="authorDetails">
+      <h3 class="heading-h3">Overview</h3>
+      <div class="overview-list">
+        <ul class="overview-heading-list">
+          <li>Key</li>
+          <li>Type</li>
+          <li>Name</li>
+          <li>Top Work</li>
+        </ul>
+        <ul class="overview-content-list">
+          <li>{{authorDetails?.key}}</li>
+          <li>{{authorDetails?.type}}</li>
+          <li>{{authorDetails?.name}}</li>
+          <li>{{authorDetails?.top_work}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+        <li [ngbNavItem]="1">
+          <a ngbNavLink>Bio</a>
+          <ng-template ngbNavContent>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+          <a ngbNavLink>Works</a>
+          <ng-template ngbNavContent>
+            <table class="table" *ngIf="!isListToggleActive">
+              <thead>
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Subtitle</th>
+                  <th scope="col">Created On</th>
+                  <th scope="col">Last modified</th>
+                  <th scope="col">Revision</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let wd of workDetails.entries">
+
+                  <td style="word-wrap: break-word;">{{ wd.title }} </td>
+                  <td>{{ wd.subTitle ? wd.subTitle :'N/A' }}</td>
+                  <td>{{ wd.created.value.split('T')[0] }}</td>
+                  <td>{{ wd.last_modified.value.split('T')[0] }}</td>
+                  <td>{{ wd.revision }}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="listContainer" *ngIf="isListToggleActive">
+              <nav class="navHeader">
+                <ul class="listHeader">
+                  <li><span>Title</span></li>
+                  <li><span> Subtitle</span></li>
+                  <li><span>Created On</span></li>
+                  <li><span>Last Modified</span></li>
+                  <li><span>Revision</span></li>
+                </ul>
+              </nav>
+              <nav class="navContent">
+                <ul class="listContent" *ngFor="let wd of workDetails.entries">
+                  <li><span>{{ wd.title }}</span></li>
+                  <li><span> {{ wd.subTitle ? wd.subTitle :'N/A' }}</span></li>
+                  <li><span>{{ wd.created.value.split('T')[0] }}</span></li>
+                  <li><span>{{ wd.last_modified.value.split('T')[0] }}</span></li>
+                  <li><span>{{ wd.revision }}</span></li>
+                </ul>
+              </nav>
+            </div>
+            <button class="btn btn-lg btn-outline-primary" (click)="toggleListView()">
+              {{
+              isListToggleActive
+              ? "Toggle for ListView"
+              : "Toggle for grid View"
+              }}
+            </button>
+          </ng-template>
+
+
+        </li>
+      </ul>
+
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+
+    </div>
+  </div>
+</div>

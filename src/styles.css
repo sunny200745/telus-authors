@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+.page-header{
+  background: no-repeat center/cover url(./assets/telus.jpg);
+    display: flex;
+    height: 170px;
+    min-width: 120px;
+    align-items: center;
+}
+.dropdown-menu.show {
+  width: 100%;
+}
+.dropdown-item {
+  padding: .75rem .75rem;
+  border: 1px solid #e9ecef;
+}
+.dropdown-item.active {
+    color: #333333;
+    text-decoration: none;
+    background-color: #799946;
+}

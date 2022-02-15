@@ -1,0 +1,22 @@
+<h3 class="heading-h3">Home Page</h3>
+<ng-template #content let-modal size:lg>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <app-typeahead (selectedAuthorDetails)="authorSelected($event)"></app-typeahead>
+  </div>
+  <div class="modal-footer">
+
+  </div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Search For Authors</button>
+
+<hr>
+
+
+
+
+

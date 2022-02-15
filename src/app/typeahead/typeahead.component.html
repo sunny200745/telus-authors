@@ -1,0 +1,16 @@
+<fieldset>
+  <div class="mb-3 row">
+    <label for="author-search" class="col-xs-3 col-sm-auto col-form-label">Search for Authors:</label>
+    <div class="col position-relative p-0 m-0">
+      <ng-template #rt let-r="result" let-t="term">
+        {{ r.name}}
+      </ng-template>
+
+      <input id="author-search" type="text" class="form-control" [class.is-invalid]="searchFailed"
+        (selectItem)="selectedItem($event)" [(ngModel)]="model" [ngbTypeahead]="search" placeholder="Authors search" [resultTemplate]="rt" [inputFormatter]="formatter"/>
+      <small *ngIf="searching" class="form-text text-muted">Searching...</small>
+      <div class="invalid-feedback" *ngIf="searchFailed">Sorry, suggestions could not be loaded.</div>
+    </div>
+  </div>
+</fieldset>
+<pre>Model: {{ model | json }}</pre>
